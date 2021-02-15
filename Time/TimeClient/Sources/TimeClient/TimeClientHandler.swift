@@ -5,7 +5,7 @@
 import Foundation
 import NIO
 
- class TimeClientHandler: ChannelInboundHandler {
+class TimeClientHandler: ChannelInboundHandler {
     typealias InboundIn = ByteBuffer
     
     func channelRead(context: ChannelHandlerContext, data: NIOAny) {
@@ -24,4 +24,4 @@ import NIO
         print("\(error.localizedDescription)")
         context.close()
     }
- }
+}
