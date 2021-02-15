@@ -10,11 +10,7 @@ class TimeClient {
         let workGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount);
         
         defer {
-            do {
-                try workGroup.syncShutdownGracefully()
-            } catch {
-                print("\(error.localizedDescription)")
-            }
+            try! workGroup.syncShutdownGracefully()
         }
         
         let b = ClientBootstrap(group: workGroup)

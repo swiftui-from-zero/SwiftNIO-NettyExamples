@@ -19,12 +19,8 @@ class EchoServer {
         let workerGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
 
         defer {
-            do {
-                try bossGroup.syncShutdownGracefully()
-                try workerGroup.syncShutdownGracefully()
-            } catch {
-                print("\(error.localizedDescription)")
-            }
+            try! bossGroup.syncShutdownGracefully()
+            try! workerGroup.syncShutdownGracefully()
         }
 
         let b = ServerBootstrap(group: bossGroup, childGroup: workerGroup)
