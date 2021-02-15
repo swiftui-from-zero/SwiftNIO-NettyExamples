@@ -14,14 +14,9 @@ class TimeServerHandler: ChannelInboundHandler {
             context.close()
         }
     }
-    
+
     func errorCaught(context: ChannelHandlerContext, error: Error) {
         print("\(error.localizedDescription)")
-        do {
-            // 在出现问题的时候关闭连接
-            try context.close().wait()
-        } catch {
-            print("\(error.localizedDescription)")
-        }
+        context.close()
     }
 }

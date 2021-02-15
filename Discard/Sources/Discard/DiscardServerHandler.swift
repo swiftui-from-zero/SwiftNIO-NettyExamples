@@ -13,14 +13,9 @@ class DiscardServerHandler: ChannelInboundHandler {
         var msg: ByteBuffer = unwrapInboundIn(data)
         print(msg.readString(length: msg.readableBytes)!)
     }
-    
+
     func errorCaught(context: ChannelHandlerContext, error: Error) {
         print("\(error.localizedDescription)")
-        do {
-            // 在出现问题的时候关闭连接
-            try context.close().wait()
-        } catch {
-            print("\(error.localizedDescription)")
-        }
+        context.close()
     }
 }
